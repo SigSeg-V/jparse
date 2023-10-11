@@ -1,0 +1,8 @@
+# ignoring IDE generated structures
+.idea/
+.vs/
+.code/
+
+# ignoring OS generated files
+.DS_Store
+.Ds_Store?
