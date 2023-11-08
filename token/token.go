@@ -29,9 +29,27 @@ const (
 	LParen = "("
 	RParen = ")"
 
+	// line type designators -> [//, //*, /*]
+	Slash = "/"
+	Aster = "*"
+
 	// keywords
 	Set  = "Set"
 	Proc = "Proc"
 	Exec = "Exec"
 	Dd   = "Dd"
 )
+
+var keywords = map[string]TokenKind{
+	"SET":  Set,
+	"PROC": Proc,
+	"EXEC": Exec,
+	"DD":   Dd,
+}
+
+func LookupIdentifier(ident string) TokenKind {
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return Identifier
+}

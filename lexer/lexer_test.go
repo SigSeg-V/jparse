@@ -15,11 +15,11 @@ func TestNextToken(t *testing.T) {
 		{
 			input: `=+(),`,
 			expectedTokens: []token.Token{
-				token.Token{Kind: token.Bind, Literal: "="},
-				token.Token{Kind: token.Plus, Literal: "+"},
-				token.Token{Kind: token.LParen, Literal: "("},
-				token.Token{Kind: token.RParen, Literal: ")"},
-				token.Token{Kind: token.Comma, Literal: ","},
+				{Kind: token.Bind, Literal: "="},
+				{Kind: token.Plus, Literal: "+"},
+				{Kind: token.LParen, Literal: "("},
+				{Kind: token.RParen, Literal: ")"},
+				{Kind: token.Comma, Literal: ","},
 			},
 		},
 	}
