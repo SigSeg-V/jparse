@@ -6,8 +6,6 @@ import (
 	"unicode/utf8"
 )
 
-const ()
-
 // space delimited position in the row
 //
 //	ex. //ASDFGHJK EXEC PGM=ACOOLPGM inline comment
