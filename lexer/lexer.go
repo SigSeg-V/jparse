@@ -9,9 +9,9 @@ import (
 const ()
 
 // space delimited position in the row
-// ex. //ASDFGHJK EXEC PGM=ACOOLPGM inline comment
 //
-//	^ ^        ^    ^            ^
+//	ex. //ASDFGHJK EXEC PGM=ACOOLPGM inline comment
+//		^ ^        ^    ^            ^
 //
 // ident  name     op   param        comment fields
 type Field uint8
