@@ -38,6 +38,11 @@ const (
 	Proc = "Proc"
 	Exec = "Exec"
 	Dd   = "Dd"
+
+	// Miscellaneous items
+	Comment     = "Comment"
+	Executable  = "Executable"
+	SysinMarker = "SysinMarker"
 )
 
 var keywords = map[string]TokenKind{

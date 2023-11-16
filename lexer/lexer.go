@@ -89,6 +89,23 @@ func (l *Lexer) NextToken() token.Token {
 		tok = newToken(token.RParen, l.char)
 	case ',':
 		tok = newToken(token.Comma, l.char)
+	case '/':
+		// start of a new line
+		if l.peekChar() == '/' {
+			l.readChar()
+			// could have a comment line so need to check for that too
+			if l.peekChar() == '*' {
+				// fix to capture the contents of the comment
+				tok = newToken(token.Comment, l.char)
+			
+			// usual executable statement
+			} else { 
+				tok = newToken(token.Executable, l.char)
+			}
+			// demarkation of sysin end
+		} else if l.peekChar() == '*' {
+			tok = newToken(token.SysinMarker, l.char)
+		}
 	case 0: // end of field
 		tok = newToken(token.Eof, l.char)
 	default: // identifiers or literals
