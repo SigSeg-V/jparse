@@ -22,6 +22,41 @@ func TestNextToken(t *testing.T) {
 				{Kind: token.Comma, Literal: ","},
 			},
 		},
+		{
+			input: `//STEP010  EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD DSN=userid.IBMMF.INPUT,DISP=SHR
+//SORTOUT  DD DSN=userid.IBMMF.OUTPUT,DISP=SHR
+//SYSIN    DD *
+  SORT FIELDS=(1,15,ZD,A)
+  SUM FIELDS=NONE
+/*`,
+			expectedTokens: []token.Token{
+				{Kind: token.Executable, Literal: "//"},
+				{Kind: token.Tag, Literal: "STEP010"},
+				{Kind: token.Exec, Literal: "EXEC"},
+				{Kind: token.Parameter, Literal: "PGM=SORT"},
+				{Kind: token.Executable, Literal: "//"},
+				{Kind: token.Tag, Literal: "SYSOUT"},
+				{Kind: token.Dd, Literal: "DD"},
+				{Kind: token.Parameter, Literal: "SYSOUT=*"},
+				{Kind: token.Executable, Literal: "//"},
+				{Kind: token.Tag, Literal: "SORTIN"},
+				{Kind: token.Dd, Literal: "DD"},
+				{Kind: token.Parameter, Literal: "DSN=userid.IBMMF.INPUT"},
+				{Kind: token.Parameter, Literal: "DISP=shr"},
+				{Kind: token.Executable, Literal: "//"},
+				{Kind: token.Tag, Literal: "SORTOUT"},
+				{Kind: token.Dd, Literal: "DD"},
+				{Kind: token.Parameter, Literal: "DSN=userid.IBMMF.OUTPUT"},
+				{Kind: token.Parameter, Literal: "DISP=shr"},
+				{Kind: token.Executable, Literal: "//"},
+				{Kind: token.Tag, Literal: "SYSIN"},
+				{Kind: token.Dd, Literal: "DD"},
+				{Kind: token.Aster, Literal: "*"},
+				{Kind: token.SysinMarker, Literal: "/*"},
+			},
+		},
 	}
 
 	runTest(t, tests)

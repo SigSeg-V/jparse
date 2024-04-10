@@ -17,6 +17,8 @@ const (
 	Identifier = "Identifier" // variable names
 	Integer    = "Integer"    // int type
 	String     = "String"     // string type
+	Tag        = "Step"       // step name
+	Parameter  = "Parameter"
 
 	// operators
 	Bind = "=" // assignment operator

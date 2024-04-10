@@ -28,7 +28,10 @@ type Lexer struct {
 	position     int   // current position in input (points to char)
 	readPosition int   // current reading position in input (points to char + 1)
 	char         rune  // current char, only characters one byte wide are valid
+	prevChar     rune  // the char previously read, used to work out if an argument is continuing over many lines
 	field        Field // current 'column' in the statement
+	lineNumber   int   // current line number being parsed
+
 }
 
 // New returns a ptr to a newly created Lexer instance
@@ -97,9 +100,9 @@ func (l *Lexer) NextToken() token.Token {
 			if l.peekChar() == '*' {
 				// fix to capture the contents of the comment
 				tok = newToken(token.Comment, l.char)
-			
-			// usual executable statement
-			} else { 
+
+				// usual executable statement
+			} else {
 				tok = newToken(token.Executable, l.char)
 			}
 			// demarkation of sysin end
